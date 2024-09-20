@@ -3,20 +3,25 @@ import random
 
 def main(playlist_id):
     # Step 1: Retrieve the tracks in the playlist
-    url = f"https://api.deezer.com/playlist/{playlist_id}/tracks?limit=70"
+    tam = 70
+    url = f"https://api.deezer.com/playlist/{playlist_id}/tracks?limit={tam}"
     response = requests.get(url)
     tracks = response.json()["data"]
-    tracks = random.choices(tracks,k=12)
     preview=[]
-    # Step 2: Retrieve the preview URL for each track
-    for track in tracks:
-        trackId = track["id"]
-        trackAlbum = track["album"]
-        trackAlbum = trackAlbum["cover_medium"]
-        trackName = track["title"]
-        preview_url = track["preview"]
-        if(preview_url!=""):
-            preview.append((trackId,trackName,trackAlbum,preview_url))
+    previewUrls=[]
+    while(len(preview)<12):
+        diff = 12-len(preview)
+        Aux = random.choices(tracks,k=diff)
+        # Step 2: Retrieve the preview URL for each track
+        for track in Aux:
+            trackId = track["id"]
+            trackAlbum = track["album"]
+            trackAlbum = trackAlbum["cover_medium"]
+            trackName = track["title"]
+            preview_url = track["preview"]
+            if(preview_url!="" and not(preview_url in previewUrls)):
+                previewUrls.append(preview_url)
+                preview.append((trackId,trackName,trackAlbum,preview_url))
     # Print the previews
     return preview
 
