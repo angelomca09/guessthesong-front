@@ -1,17 +1,20 @@
-const searchInput = document.getElementById('search-input');
-const searchButton = document.getElementById('search-button');
-const trackList = document.getElementById('track-list');
-const audioPlayer = document.getElementById('audio-player');
 
-searchButton.addEventListener('click', searchTracks);
-function searchTracks() {
-  const searchTerm = searchInput.value.trim();
-  if (!searchTerm) {
-    alert('Please enter a playlist ID');
-    return;
-  }
+const tracksList = document.querySelector("#track-list")
 
-  lista = fetch(`http://localhost:5000/get_playlist/${searchTerm}`)
+fetch(`http://localhost:5000/get_playlist/12645052643`)
   .then((response) => response.json())
-  .then((json) => console.log(json));
-}
+  .then((json) => {
+    json.forEach(json => {
+      const newListItem = document.createElement("AUDIO")
+      const divItem = document.createElement("div")
+      const imgItem = document.createElement("img")
+      divItem.textContent= json[1]
+      imgItem.src=json[2]
+      newListItem.src=json[3]
+      divItem.appendChild(imgItem)
+      divItem.onclick = () =>{if(newListItem.paused){newListItem.play()} else{newListItem.pause(); newListItem.load()}}
+      tracksList.appendChild(divItem)
+    });
+  });
+
+
