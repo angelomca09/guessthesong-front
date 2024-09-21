@@ -7,7 +7,7 @@ function Root() {
     <>
       <Navbar></Navbar>
       <div className="container">
-        <article>
+        <article className='text-center'>
           <p>Place the game options here</p>
         </article>
       </div>
