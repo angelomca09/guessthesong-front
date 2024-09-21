@@ -4,8 +4,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './index.css'
 import "@picocss/pico"
 import { loadTheme } from './ts/theme-switcher'
-import Root from './routes/root'
+import Root, { collectionsLoader } from './routes/root'
 import ErrorPage from './error-page';
+import Collection from './routes/collection';
 
 loadTheme();
 
@@ -13,8 +14,16 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
+    loader: collectionsLoader,
+    children: [
+      {
+        path: "collection/:playlistId",
+        element: <Collection />
+      }
+    ]
   },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
