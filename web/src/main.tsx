@@ -4,9 +4,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './index.css'
 import "@picocss/pico"
 import { loadTheme } from './ts/theme-switcher'
-import Root, { collectionsLoader } from './routes/root'
+import Root from './routes/root'
 import ErrorPage from './error-page';
-import Collection from './routes/collection';
+import Collection, { gameContentLoader } from './routes/collection';
+import IndexRoute from './routes';
 
 loadTheme();
 
@@ -15,11 +16,12 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
-    loader: collectionsLoader,
     children: [
+      { index: true, element: <IndexRoute /> },
       {
         path: "collection/:playlistId",
-        element: <Collection />
+        element: <Collection />,
+        loader: gameContentLoader
       }
     ]
   },
