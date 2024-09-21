@@ -1,5 +1,7 @@
-function getCollections() {
-    let collections = [
+import { ICollection } from "../interfaces/ICollection";
+
+export function getCollections() {
+    let collections: ICollection[] = [
         {
             name: "Games",
             playlistId: "12645052643"
