@@ -14,14 +14,16 @@ def main(playlist_id):
         Aux = random.choices(tracks,k=diff)
         # Step 2: Retrieve the preview URL for each track
         for track in Aux:
-            trackId = track["id"]
-            trackAlbum = track["album"]
-            trackAlbum = trackAlbum["cover_medium"]
-            trackName = track["title"]
-            preview_url = track["preview"]
-            if(preview_url!="" and not(preview_url in previewUrls)):
-                previewUrls.append(preview_url)
-                preview.append((trackId,trackName,trackAlbum,preview_url))
+            preview_track = {}
+            preview_track["id"] = track["id"]
+            preview_track["album"] = track["album"]["title"]
+            preview_track["cover_medium"] = track["album"]["cover_medium"]
+            preview_track["title"] = track["title"]
+            preview_track["preview"] = track["preview"]
+
+            if(preview_track["preview"] !="" and not(preview_track["preview"] in previewUrls)):
+                previewUrls.append(preview_track["preview"])
+                preview.append(preview_track)
     # Print the previews
     return preview
 
