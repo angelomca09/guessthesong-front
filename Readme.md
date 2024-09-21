@@ -12,3 +12,5 @@ cd web/
 npm i
 npm run
 ```
+
+Give it a star!
