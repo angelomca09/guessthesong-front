@@ -17,7 +17,7 @@ function Root() {
     <>
       <Navbar></Navbar>
       <div className="container">
-        <article className='text-center'>
+        <article>
           <Outlet />
         </article>
       </div>

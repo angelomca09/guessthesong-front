@@ -7,7 +7,7 @@ export const Navbar = () => {
   const [actualTheme, setActualTheme] = useState(getCurrentTheme())
 
   return (
-    <section>
+    <section className='mb-0'>
       <nav className="container-fluid">
         <ul><li><a href="./" className='contrast' onClick={(e) => e.preventDefault()}><strong>GuessTheSong</strong></a></li></ul>
         <ul>
