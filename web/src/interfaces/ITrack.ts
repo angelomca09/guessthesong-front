@@ -1,6 +1,6 @@
 export interface ITrack {
     album: string;
     artist: string;
-    cover_medium: string;
+    cover: string;
     title: string;
 }
