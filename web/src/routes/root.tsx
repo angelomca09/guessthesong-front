@@ -1,13 +1,13 @@
-import './App.css'
-import { Navbar } from './layout/Navbar';
 
-function App() {
+import { Navbar } from '../layout/Navbar';
+
+function Root() {
   
   return (
     <>
       <Navbar></Navbar>
       <div className="container">
-        <article className='App'>
+        <article>
           <p>Place the game options here</p>
         </article>
       </div>
@@ -15,4 +15,4 @@ function App() {
   )
 }
 
-export default App
+export default Root
