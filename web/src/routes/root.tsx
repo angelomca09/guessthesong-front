@@ -13,7 +13,6 @@ function Root() {
 
   const { collections } = useLoaderData() as { collections: ICollection[] };
 
-  console.log(collections)
   return (
     <>
       <Navbar></Navbar>
