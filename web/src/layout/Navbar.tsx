@@ -8,7 +8,7 @@ export const Navbar = () => {
   const [actualTheme, setActualTheme] = useState(getCurrentTheme())
 
   return (
-    <section className='mb-0'>
+    <section className='mb-0 h-12'>
       <nav className="container-fluid">
         <ul><li><Link to={"/"}><strong className='contrast'>GuessTheSong</strong></Link></li></ul>
         <ul>
