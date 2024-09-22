@@ -13,4 +13,9 @@ npm i
 npm run
 ```
 
+Note that to run successfuly, you'll need to create a `.env.local` file and add the respective key to it
+```
+VITE_API_URL="http://localhost:5000"
+```
+
 Give it a star!
