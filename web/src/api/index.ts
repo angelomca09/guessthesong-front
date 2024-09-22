@@ -7,7 +7,7 @@ const api = axios.create({
 
 async function getGameByPlaylistId(playlistId: string) {
     return api.get(`get_playlist/${playlistId}`)
-        .then((res): IGameContent => res.data)
+        .then((res): IGameContent[] => res.data)
 }
 
 export {
