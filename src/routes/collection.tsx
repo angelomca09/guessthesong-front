@@ -10,41 +10,11 @@ export const gamesLoader = async ({ params }: any) => {
     return { games };
 }
 
-export function GameColumn({ game }: { game: IGameContent }) {
-
-    const { answer, tracks } = game
-
-    const [answered, setAnswered] = useState(false)
-
-    const chooseMusicAsOption = (index: number, answer: number) => {
-        //TODO: if mobile, show confirmation Modal
-        setAnswered(true);
-
-        if (index !== answer) {
-            //TODO: show WRONG
-            console.log("WRONG")
-        }
-        else {
-            //TODO: show CORRECT
-            console.log("CORRECT")
-        }
-    }
-
-    return (
-        <div>
-            {!!tracks.length && tracks.map((track, i) => (
-                <MusicCard key={i} track={track} answered={answered} isCorrect={answer === i}
-                    onClick={() => chooseMusicAsOption(i, answer)} />
-            ))}
-        </div>
-
-    )
-}
-
 export default function CollectionRoute() {
     const { games } = useLoaderData() as { games: IGameContent[] }
 
     const [currentSrc, setCurrentSrc] = useState("")
+    const [isAnswered, setIsAnswered] = useState([false, false, false])
 
     const audioTag = useRef(null)
 
@@ -68,15 +38,33 @@ export default function CollectionRoute() {
         (audioTag.current as any).volume = volume;
     }, [])
 
+    useEffect(() => {
+        //showReplayOtion
+    
+    }, [isAnswered])
+    
+
     return <>
         <div className="flex flex-row justify-evenly" >
             <audio ref={audioTag} className="hidden" onEnded={() => { handleChange("") }}></audio>
-            {!!games.length && games.map((game, i) => {
-                const { preview } = game
+            {!!games.length && games.map((game, game_index) => {
+                const { answer, preview, tracks } = game
 
-                return (<div key={i} className="w-fit flex flex-col items-center select-none">
+                const chooseMusicAsOption = (index: number) => {
+                    //TODO: if mobile, show confirmation Modal
+
+                    const nextIsAnswered = isAnswered.map((b, i) => i === game_index ? true : b)
+                    setIsAnswered(nextIsAnswered);
+                }
+
+                return (<div key={game_index} className="w-fit flex flex-col items-center select-none">
                     <PlayButton isPlaying={currentSrc === preview} handleClick={() => handleChange(preview)} />
-                    <GameColumn game={game} />
+                    <div>
+                        {!!tracks.length && tracks.map((track, track_index) => (
+                            <MusicCard key={track_index} track={track} isAnswered={isAnswered[game_index]} isCorrect={answer === track_index}
+                                onClick={() => chooseMusicAsOption(track_index)} />
+                        ))}
+                    </div>
                 </div>)
             }
             )}
