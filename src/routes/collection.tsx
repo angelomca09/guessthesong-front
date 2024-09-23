@@ -46,13 +46,11 @@ export default function CollectionRoute() {
         (audioTag.current as any)?.load();
         setCurrentGames([])
         setIsLoaderVisible(true);
-        setTimeout(() => {
-            getGameByPlaylistId(playlistId!).then(res => {
+        getGameByPlaylistId(playlistId!).then(res => {
             setCurrentGames(res)
             setIsAnswered(ISANSWERED_INITIAL_STATE)
             setIsLoaderVisible(false)
         })
-        }, 1000);
         
     }
 
