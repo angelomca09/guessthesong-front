@@ -4,9 +4,9 @@ import { getCollections } from "../ts/collection-base";
 export default function IndexRoute() {
     const collections = getCollections();
 
-    return <div className="flex gap-4">
+    return <article className="flex gap-8">
         {!!collections.length && collections.map(collection => (
             <CollectionCard collection={collection} />
         ))}
-    </div>
+    </article>
 }
