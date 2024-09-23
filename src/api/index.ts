@@ -6,7 +6,7 @@ const api = axios.create({
 })
 
 async function getGameByPlaylistId(playlistId: string) {
-    return api.get(`get_playlist/${playlistId}`)
+    return api.get(`get_playlist?playlist_id=${playlistId}`)
         .then((res): IGameContent[] => res.data)
 }
 
