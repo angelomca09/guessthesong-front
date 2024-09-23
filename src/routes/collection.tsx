@@ -63,7 +63,6 @@ export default function CollectionRoute() {
 
     useEffect(() => {
         const volume = 0.05; // TODO: make it configurable
-        console.log(audioTag)
         if (audioTag.current)
             (audioTag.current as any).volume = volume;
     }, [audioTag])
