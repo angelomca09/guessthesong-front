@@ -8,9 +8,7 @@ function Root() {
     <>
       <Navbar></Navbar>
       <div className="container">
-        <article>
-          <Outlet />
-        </article>
+        <Outlet />
       </div>
     </>
   )
