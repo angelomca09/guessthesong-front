@@ -3,6 +3,7 @@ import { PlaylistCard } from "../layout/PlaylistCard";
 import { toggleFavoritePlaylist, getFavoritePlaylists } from "../ts/playlist-base";
 import { IPlaylist } from "../interfaces/IPlaylist";
 import { getPlaylist } from "../api";
+import Footer from "../layout/Footer";
 
 export default function IndexRoute() {
 
@@ -59,5 +60,6 @@ export default function IndexRoute() {
                 <p className="m-0">Search a playlist and Favorite it!</p>
             }
         </article>
+        <Footer />
     </>
 }
