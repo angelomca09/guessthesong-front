@@ -3,8 +3,8 @@ import LinkinParkCover from "../assets/LP.jpg"
 import LeagueOfLegendsCover from "../assets/League.jpg"
 
 
-export function getCollections() {
-    let collections: IPlaylist[] = [
+export function getFavoritePlaylists() {
+    let playlists: IPlaylist[] = [
         {
             id: "12436298603",
             title: "League of Legends",
@@ -17,7 +17,7 @@ export function getCollections() {
         },
     ]
 
-    // Add the collections from localStorage
+    // Add the playlists from localStorage
 
-    return collections;
+    return playlists;
 }

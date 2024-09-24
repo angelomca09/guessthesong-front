@@ -1,12 +1,18 @@
-import { CollectionCard } from "../layout/CollectionCard";
-import { getCollections } from "../ts/collection-base";
+import { PlaylistCard } from "../layout/PlaylistCard";
+import { getFavoritePlaylists } from "../ts/playlist-base";
 
 export default function IndexRoute() {
-    const collections = getCollections();
 
-    return <article className="flex gap-8">
-        {!!collections.length && collections.map(collection => (
-            <CollectionCard collection={collection} />
-        ))}
-    </article>
+    const favoritePlaylists = getFavoritePlaylists();
+
+    return <>
+        <h3>Favorites</h3>
+        <article className="flex gap-8">
+            {!!favoritePlaylists.length && favoritePlaylists.map(playlist => (
+                <PlaylistCard playlist={playlist} />
+            ))}
+        </article>
+        <br />
+        
+    </>
 }

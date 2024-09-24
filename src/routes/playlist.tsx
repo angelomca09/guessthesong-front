@@ -14,7 +14,7 @@ export const gamesLoader = async ({ params }: any) => {
 
 const ISANSWERED_INITIAL_STATE = [false, false, false] // Length = 3
 
-export default function CollectionRoute() {
+export default function PlaylistRoute() {
     const { games } = useLoaderData() as { games: IGameContent[] }
     const { playlistId } = useParams()
 

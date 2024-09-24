@@ -6,7 +6,7 @@ import "@picocss/pico"
 import { loadTheme } from './ts/theme-switcher'
 import Root from './routes/root'
 import ErrorPage from './error-page';
-import Collection, { gamesLoader } from './routes/collection';
+import Collection, { gamesLoader } from './routes/playlist';
 import IndexRoute from './routes';
 
 loadTheme();
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <IndexRoute /> },
       {
-        path: "collection/:playlistId",
+        path: "playlist/:playlistId",
         element: <Collection />,
         loader: gamesLoader
       }
