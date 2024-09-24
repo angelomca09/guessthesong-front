@@ -42,7 +42,7 @@ npm i
 npm run
 ```
 
-Note that to run successfuly, you'll need to create a `.env.local` file and add the `VITE_API_URL` key to it. You may use your local API address.
+Note that to run successfuly, you'll need to create a `.env` file and add the `VITE_API_URL` key to it. You may use your local API address.
 ```
 VITE_API_URL="http://localhost:5000"
 ```
