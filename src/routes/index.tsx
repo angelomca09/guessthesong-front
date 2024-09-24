@@ -40,7 +40,7 @@ export default function IndexRoute() {
 
     return <>
         <form className="pt-8" onSubmit={handleSubmit}>
-            <input autoComplete="off" type="search" id="search" name="search" placeholder="Search" value={searchText} onChange={(e) => setSearchText(e.target.value)}></input>
+            <input autoComplete="off" type="search" id="search" name="search" placeholder="Search a playlist" value={searchText} onChange={(e) => setSearchText(e.target.value)}></input>
         </form>
         {
             !!searchedPlaylists.length &&
