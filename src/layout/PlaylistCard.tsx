@@ -22,7 +22,7 @@ export function PlaylistCard({ playlist, isFavorite, onFavoriteClick }: { playli
             </div>
         </Link>
         <p className="w-32 text-center text-nowrap text-ellipsis overflow-hidden text-base p-0 m-0">{playlist.title}</p>
-        <button className="absolute top-2 right-2 outline text-white w-8 aspect-square rounded-full p-0 flex justify-center items-center border-2 border-white outline-0"
+        <button className={`absolute top-2 right-2 outline text-white w-8 aspect-square rounded-full p-0 flex justify-center items-center border-2 border-white outline-0 ${isFavoriteHovered ? "opacity-100" : "opacity-30"}`}
             onMouseEnter={() => setIsFavoriteHovered(true)} onMouseLeave={() => setIsFavoriteHovered(false)} onClick={() => onFavoriteClick()}>
             {showFavoriteIcon(isFavoriteHovered, isFavorite)}
         </button>
