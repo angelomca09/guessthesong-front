@@ -1,23 +1,19 @@
-import { ICollection } from "../interfaces/ICollection";
+import { IPlaylist } from "../interfaces/IPlaylist";
 import LinkinParkCover from "../assets/LP.jpg"
 import LeagueOfLegendsCover from "../assets/League.jpg"
 
 
 export function getCollections() {
-    let collections: ICollection[] = [
+    let collections: IPlaylist[] = [
         {
-            name: "League of Legends",
-            playlistId: "12436298603",
+            id: "12436298603",
+            title: "League of Legends",
             cover: LeagueOfLegendsCover
         },
         {
-            name: "Linkin Park",
-            playlistId: "3382903206",
+            id: "3382903206",
+            title: "Linkin Park",
             cover: LinkinParkCover
-        },
-        {
-            name: "Games",
-            playlistId: "12645052643",
         },
     ]
 
