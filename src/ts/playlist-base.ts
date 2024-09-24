@@ -1,23 +1,32 @@
 import { IPlaylist } from "../interfaces/IPlaylist";
-import LinkinParkCover from "../assets/LP.jpg"
-import LeagueOfLegendsCover from "../assets/League.jpg"
 
+const PLAYLISTS_KEY = "playlists"
 
 export function getFavoritePlaylists() {
-    let playlists: IPlaylist[] = [
-        {
-            id: "12436298603",
-            title: "League of Legends",
-            cover: LeagueOfLegendsCover
-        },
-        {
-            id: "3382903206",
-            title: "Linkin Park",
-            cover: LinkinParkCover
-        },
-    ]
+    if (!localStorage.getItem(PLAYLISTS_KEY))
+        saveFavorites([]);
 
-    // Add the playlists from localStorage
+    let playlists: IPlaylist[] = JSON.parse(localStorage.getItem(PLAYLISTS_KEY) || "[]")
 
     return playlists;
+}
+
+export function saveFavorites(playlists: IPlaylist[]) {
+    localStorage.setItem(PLAYLISTS_KEY, JSON.stringify(playlists))
+}
+
+export function toggleFavoritePlaylist(playlist: IPlaylist) {
+    console.log("TRACK :: toggleFavoritePlaylist: ", playlist)
+    let playlists = getFavoritePlaylists()
+    console.log(playlists)
+
+    if (playlists.filter(p => p.id === playlist.id).length === 0) {
+        console.log("Adding")
+        playlists.push(playlist)
+    }
+    else {
+        console.log("Removing")
+        playlists = playlists.filter(p => p.id !== playlist.id)
+    }
+    saveFavorites(playlists)
 }

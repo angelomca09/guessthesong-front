@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PlaylistCard } from "../layout/PlaylistCard";
-import { getFavoritePlaylists } from "../ts/playlist-base";
+import { toggleFavoritePlaylist, getFavoritePlaylists } from "../ts/playlist-base";
 import { IPlaylist } from "../interfaces/IPlaylist";
 import { getPlaylist } from "../api";
 
 export default function IndexRoute() {
 
-    const favoritePlaylists = getFavoritePlaylists();
+    //const favoritePlaylists = getFavoritePlaylists();
+    const [favoritePlaylists, setFavoritePlaylists] = useState<IPlaylist[]>([])
     const [searchText, setSearchText] = useState("")
     const [searchedPlaylists, setsearchedPlaylists] = useState<IPlaylist[]>([]);
 
@@ -18,26 +19,45 @@ export default function IndexRoute() {
         })
     }
 
-    return <>
-        <h3 className="pt-8" >Favorites</h3>
-        <article className="flex gap-8">
-            {!!favoritePlaylists.length && favoritePlaylists.map(playlist => (
-                <PlaylistCard playlist={playlist} />
-            ))}
-        </article>
-        <br />
-        <h3>Search</h3>
+    const handleFavoriteClick = (playlist: IPlaylist) => {
+        toggleFavoritePlaylist(playlist)
+        setFavoritePlaylists(getFavoritePlaylists())
+    }
 
-        <form onSubmit={handleSubmit}>
-            <input type="search" id="search" name="search" placeholder="Search" value={searchText} onChange={(e) => setSearchText(e.target.value)}></input>
+    useEffect(() => {
+        setFavoritePlaylists(getFavoritePlaylists())
+
+    }, [])
+
+    useEffect(() => {
+        if (searchText === "") {
+            setsearchedPlaylists([])
+        }
+    }, [searchText])
+
+
+
+    return <>
+        <form className="pt-8" onSubmit={handleSubmit}>
+            <input autoComplete="off" type="search" id="search" name="search" placeholder="Search" value={searchText} onChange={(e) => setSearchText(e.target.value)}></input>
         </form>
         {
             !!searchedPlaylists.length &&
-            <article className="flex gap-8">
+            <article className="flex gap-8 flex-wrap">
                 {searchedPlaylists.map(playlist => (
-                    <PlaylistCard playlist={playlist} />
+                    <PlaylistCard key={playlist.id} isFavorite={!!favoritePlaylists.find(p => p.id === playlist.id)} playlist={playlist} onFavoriteClick={() => handleFavoriteClick(playlist)} />
                 ))}
             </article>
         }
+        <h3 className="mt-2">Favorites</h3>
+        <article className="flex gap-8">
+
+            {!!favoritePlaylists.length ?
+                favoritePlaylists.map(playlist => (
+                    <PlaylistCard key={playlist.id} isFavorite={true} playlist={playlist} onFavoriteClick={() => handleFavoriteClick(playlist)} />
+                )) :
+                <p className="m-0">Search a playlist and Favorite it!</p>
+            }
+        </article>
     </>
 }
