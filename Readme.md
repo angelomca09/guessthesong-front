@@ -26,7 +26,6 @@ Frontend was made using **Vite** as a build tool to create and manage a simple *
 - Axios
 
 > [!NOTE]
-> VERY IMPORTANT
 >
 >To run the project you would probably like to run your local [GuessTheSong API](https://github.com/josermca01/guess-the-song-flask).
 
