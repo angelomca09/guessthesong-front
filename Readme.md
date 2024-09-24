@@ -12,6 +12,8 @@ All the data and samples used in the project comes from the [Deezer API](https:/
 
 It is all heavily inspired on [Musicle](https://musicle.app/), so be sure to go check it out!
 
+This project is being hosted in [Cloudflare Pages](https://pages.cloudflare.com/) while its API is being hosted in [Verce](https://vercel.com/)
+
 ## ⌨️ Techs
 
 Frontend was made using **Vite** as a build tool to create and manage a simple **React** application. Here are all the techs used:
